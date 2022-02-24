@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Navbar, Button, Alignment, InputGroup } from '@blueprintjs/core';
 import { useDispatch } from 'react-redux';
 import { useTypeSelector } from '../hooks/useTypeSelector';
