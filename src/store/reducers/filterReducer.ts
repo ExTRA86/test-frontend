@@ -5,7 +5,7 @@ import {
 } from '../../types/filter';
 
 const initialState: FilterState = {
-  query: '',
+  query: [],
 };
 
 export const filterReducer = (
@@ -21,5 +21,5 @@ export const filterReducer = (
 };
 
 export function setSearched(query: any): FilterAction {
-  return { type: FilterActionTypes.ADD_FILTER, payload: '' };
+  return { type: FilterActionTypes.ADD_FILTER, payload: [] };
 }

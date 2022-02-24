@@ -5,25 +5,32 @@ import { useTypeSelector } from '../hooks/useTypeSelector';
 
 const NavigationBar: FC = () => {
   const dispatch = useDispatch();
-  const [filter, setFilter] = useState({
-    query: '',
+  const [filter, setFilter] = useState('');
+  const { numbers } = useTypeSelector(state => state.num);
+
+  const searchedNumbers = numbers.filter(n => {
+    if (filter === '') {
+      return n;
+    } else if (n === +filter) {
+      return n;
+    }
   });
 
-  const { numbers } = useTypeSelector(state => state.num);
-  const SearchedNumbers = numbers.filter(n => n === +filter.query) + '';
-
-  const setRow = () => {
-    dispatch({ type: 'ADD_ROW' });
+  const setNum = () => {
+    dispatch({
+      type: 'ADD_NUM_ROW',
+      payload: [...numbers, (numbers.length + 1) * 2],
+    });
   };
 
   const setSearched = () => {
-    dispatch({ type: 'ADD_FILTER', payload: SearchedNumbers });
+    dispatch({ type: 'ADD_FILTER', payload: [...searchedNumbers] });
   };
 
   useEffect(() => {
     setSearched();
     // eslint-disable-next-line
-  }, [filter]);
+  }, [searchedNumbers]);
 
   return (
     <Navbar>
@@ -31,10 +38,10 @@ const NavigationBar: FC = () => {
         <InputGroup
           placeholder='Search number...'
           type='number'
-          value={filter.query}
-          onChange={e => setFilter({ ...filter, query: e.target.value })}
+          value={filter}
+          onChange={e => setFilter(e.target.value)}
         />
-        <Button className='bp3-minimal' text='+' onClick={setRow} />
+        <Button className='bp3-minimal' text='+' onClick={setNum} />
         <Navbar.Divider />
         <Navbar.Heading>NavigationBar</Navbar.Heading>
       </Navbar.Group>

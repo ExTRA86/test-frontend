@@ -1,5 +1,5 @@
 export interface FilterState {
-  query: string;
+  query: any[];
 }
 
 export enum FilterActionTypes {
@@ -8,7 +8,7 @@ export enum FilterActionTypes {
 
 interface FetchFilterAction {
   type: FilterActionTypes.ADD_FILTER;
-  payload: string;
+  payload: any[];
 }
 
 export type FilterAction = FetchFilterAction;
