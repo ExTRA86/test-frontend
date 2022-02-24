@@ -14,6 +14,7 @@ const NavigationBar: FC = () => {
     } else if (n === +filter) {
       return n;
     }
+    return false;
   });
 
   const setNum = () => {
