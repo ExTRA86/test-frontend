@@ -19,7 +19,3 @@ export const numberReducer = (
       return state;
   }
 };
-
-export function setNum(row: number): NumberAction {
-  return { type: NumberActionTypes.ADD_NUM_ROW, payload: [] };
-}

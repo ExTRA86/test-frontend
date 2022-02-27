@@ -5,7 +5,7 @@ import {
 } from '../../types/filter';
 
 const initialState: FilterState = {
-  query: [],
+  filteredNum: [],
 };
 
 export const filterReducer = (
@@ -13,13 +13,9 @@ export const filterReducer = (
   action: FilterAction,
 ): FilterState => {
   switch (action.type) {
-    case FilterActionTypes.ADD_FILTER:
-      return { ...state, query: action.payload };
+    case FilterActionTypes.ADD_FILTERED_NUM:
+      return { ...state, filteredNum: action.payload };
     default:
       return state;
   }
 };
-
-export function setSearched(query: any): FilterAction {
-  return { type: FilterActionTypes.ADD_FILTER, payload: [] };
-}

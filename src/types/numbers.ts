@@ -1,5 +1,5 @@
 export interface NumberState {
-  numbers: any[];
+  numbers: number[];
 }
 
 export enum NumberActionTypes {
@@ -8,7 +8,7 @@ export enum NumberActionTypes {
 
 interface FetchNumberAction {
   type: NumberActionTypes.ADD_NUM_ROW;
-  payload: any[];
+  payload: number[];
 }
 
 export type NumberAction = FetchNumberAction;

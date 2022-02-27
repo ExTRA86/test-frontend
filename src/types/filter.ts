@@ -1,14 +1,14 @@
 export interface FilterState {
-  query: any[];
+  filteredNum: number[];
 }
 
 export enum FilterActionTypes {
-  ADD_FILTER = 'ADD_FILTER',
+  ADD_FILTERED_NUM = 'ADD_FILTERED_NUM',
 }
 
 interface FetchFilterAction {
-  type: FilterActionTypes.ADD_FILTER;
-  payload: any[];
+  type: FilterActionTypes.ADD_FILTERED_NUM;
+  payload: number[];
 }
 
 export type FilterAction = FetchFilterAction;

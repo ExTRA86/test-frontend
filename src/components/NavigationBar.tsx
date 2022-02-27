@@ -1,14 +1,15 @@
 import { FC, useEffect, useState } from 'react';
 import { Navbar, Button, Alignment, InputGroup } from '@blueprintjs/core';
-import { useDispatch } from 'react-redux';
 import { useTypeSelector } from '../hooks/useTypeSelector';
+import { useActions } from '../hooks/useAction';
 
 const NavigationBar: FC = () => {
-  const dispatch = useDispatch();
   const [filter, setFilter] = useState('');
-  const { numbers } = useTypeSelector(state => state.num);
 
-  const searchedNumbers = numbers.filter(n => {
+  const { numbers } = useTypeSelector(state => state.num);
+  const { setNum, setSearched } = useActions();
+
+  const searchedNumbers = numbers.filter((n: number) => {
     if (filter === '') {
       return n;
     } else if (n === +filter) {
@@ -17,19 +18,8 @@ const NavigationBar: FC = () => {
     return false;
   });
 
-  const setNum = () => {
-    dispatch({
-      type: 'ADD_NUM_ROW',
-      payload: [...numbers, (numbers.length + 1) * 2],
-    });
-  };
-
-  const setSearched = () => {
-    dispatch({ type: 'ADD_FILTER', payload: [...searchedNumbers] });
-  };
-
   useEffect(() => {
-    setSearched();
+    setSearched([...searchedNumbers]);
     // eslint-disable-next-line
   }, [searchedNumbers]);
 
@@ -42,7 +32,11 @@ const NavigationBar: FC = () => {
           value={filter}
           onChange={e => setFilter(e.target.value)}
         />
-        <Button className='bp3-minimal' text='+' onClick={setNum} />
+        <Button
+          className='bp3-minimal'
+          text='+'
+          onClick={() => setNum([...numbers, (numbers.length + 1) * 2])}
+        />
         <Navbar.Divider />
         <Navbar.Heading>NavigationBar</Navbar.Heading>
       </Navbar.Group>
