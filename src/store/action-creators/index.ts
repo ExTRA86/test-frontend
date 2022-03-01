@@ -1,7 +1,9 @@
 import * as FilterNumActionCreators from './filterNum';
 import * as NumActionCreators from './num';
 
-export default {
+const ActionCreators = {
   ...FilterNumActionCreators,
   ...NumActionCreators,
 };
+
+export default ActionCreators;
